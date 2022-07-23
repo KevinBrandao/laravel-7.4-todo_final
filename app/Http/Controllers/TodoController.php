@@ -34,12 +34,12 @@ class TodoController extends Controller
 
             $attributes = $request->only([
                 'title',
-                'description',
-                'color'
+                'color',
+                'is_complete',
+                'user_id'
             ]);
 
             $attributes['user_id'] = $user->id;
-
             $todo = Todo::create($attributes);
         } catch (\Throwable $th) {
             logger()->error($th);
