@@ -80,7 +80,7 @@ class TodoController extends Controller
      * @param  \App\Models\Todo  $todo
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Todo $todo)
+    public function delete(Todo $todo)
     {
         try {
             // Verificar se TODO é do usuário
@@ -88,7 +88,7 @@ class TodoController extends Controller
                 return response('', 403);
             }
 
-            $todo->delete();
+            $todo->delete(1);
         } catch (\Throwable $th) {
             logger()->error($th);
             return redirect('/dashboard')->with('error', 'Erro ao deletar TODO');
